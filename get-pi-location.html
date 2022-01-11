@@ -27,8 +27,8 @@ Message: ${error.message}`;
 					output.style.backgroundColor = "#ffeeee";
 				}
 				navigator.geolocation.getCurrentPosition(onSuccess, onFailure, {
-					enableHighAccuracy: true,
-					maximumAge: 0,
+					enableHighAccuracy: true, // Can take longer and use more power, but worth it
+					maximumAge: 0, // Don't use a chached position
 				});
 			});
 		</script>
