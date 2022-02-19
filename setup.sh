@@ -1,1 +1,3 @@
-sudo apt install nodejs
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install nodejs -y
