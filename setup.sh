@@ -4,3 +4,4 @@ sudo apt-get install -y nodejs
 (crontab -l 2>/dev/null; echo "@reboot node /opt/pishake-client/script.js") | crontab -
 sudo npm i -g pnpm
 pnpm i
+nano script.js
