@@ -1,8 +1,18 @@
 // import dgram from "dgram";
 import fetch from "node-fetch";
 import WebSocket from 'ws';
-import fs from "fs";const token = "REPLACE ME";var streamController;const streamControllers = {};const madeStreams = {};const segmentDuration = 25;var packetLength = 0;var SI = 0;async function createStream(timestamp) {
-    madeStreams[timestamp] = true;    console.log("created stream", timestamp);    streamControllers[timestamp] = new WebSocket(`wss://ingest-worker.benhong.workers.dev/ingest/websocket?time=${timestamp}&SI=${SI}&duration=${segmentDuration}`, {
+import fs from "fs";
+const token = "REPLACE ME";
+var streamController;
+const streamControllers = {};
+const madeStreams = {};
+const segmentDuration = 25;
+var packetLength = 0;
+var SI = 0;
+async function createStream(timestamp) {
+    madeStreams[timestamp] = true;
+    console.log("created stream", timestamp);
+    streamControllers[timestamp] = new WebSocket(`wss://ingest-worker.benhong.workers.dev/ingest/websocket?time=${timestamp}&SI=${SI}&duration=${segmentDuration}`, {
         perMessageDeflate: false,
         headers: {
             "authorization": "Bearer " + token,
@@ -12,7 +22,8 @@ import fs from "fs";const token = "REPLACE ME";var streamController;const stream
         // Code to handle the error.
         console.error(err); // unexpected server response (521)
       });
-}async function updateMetadata() {
+}
+async function updateMetadata() {
     fetch("https://internship-worker.benhong.workers.dev/api/v1/sensors/updateMetadata", {
         method: "POST",
         body: JSON.stringify({ SI, segmentDuration, packetLength }),
@@ -20,7 +31,9 @@ import fs from "fs";const token = "REPLACE ME";var streamController;const stream
             Authorization: "Bearer " + token
         }
     })
-}var lastStream;function hexToInt(hex) {
+}
+var lastStream;
+function hexToInt(hex) {
     if (hex.length % 2 != 0) {
         hex = "0" + hex;
     }
@@ -30,8 +43,14 @@ import fs from "fs";const token = "REPLACE ME";var streamController;const stream
         num = num - maxVal
     }
     return num;
-}const filePath = "/dev/ttyS0"const readableStream = fs.createReadStream(filePath, 'utf8')var jsonString = ""var measurements = {}var lastThing = 0
-var timestamp = 0readableStream.on('data', (chunk) => {
+}
+const filePath = "/dev/ttyS0"
+const readableStream = fs.createReadStream(filePath, 'utf8')
+var jsonString = ""
+var measurements = {}
+var lastThing = 0
+var timestamp = 0
+readableStream.on('data', (chunk) => {
     jsonString += chunk
     if (jsonString.charAt(jsonString.length - 1) == "}") {
         if (jsonString.charAt(0) == "{") {
