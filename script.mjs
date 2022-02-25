@@ -75,21 +75,27 @@ readableStream.on('data', (chunk) => {
                     )
                         createStream(
                             Math.floor((timestamp + 5) / segmentDuration) * segmentDuration
-                        );                    var streamKey = Math.floor(timestamp / segmentDuration) * segmentDuration;                    // console.log(data);                    const controller =
-                        streamControllers[
-                        Math.floor(timestamp / segmentDuration) * segmentDuration
+                        );
+                        var streamKey = Math.floor(timestamp / segmentDuration) * segmentDuration;
+                        // console.log(data);
+                        const controller = streamControllers[
+                                Math.floor(timestamp / segmentDuration) * segmentDuration
                         ];                    if (controller && controller.readyState === 1)
-                        controller.send(JSON.stringify([data.CN, timestamp, ...data.DS.map(hexToInt)]))                    if (streamKey !== lastStream) {
+                        controller.send(JSON.stringify([data.CN, timestamp, ...data.DS.map(hexToInt)]))
+                    if (streamKey !== lastStream) {
                         let oldController = streamControllers[lastStream]
                         if (oldController && oldController.readyState === 1)
                             oldController.send("close");
-                    }                    lastStream = streamKey;                    if (SI !== data.SI || packetLength !== data.DS.length) {
+                    }
+                        lastStream = streamKey;
+                if (SI !== data.SI || packetLength !== data.DS.length) {
                         SI = data.SI
                         packetLength = data.DS.length
                         console.log("updating metadata")
                         updateMetadata()
                     }
-                }                if (measurements.timestamp && measurements.EN1 && measurements.EN2 && measurements.EN3 && measurements.EH3) {
+                }
+            if (measurements.timestamp && measurements.EN1 && measurements.EN2 && measurements.EN3 && measurements.EH3) {
                     // console.log(measurements)
                     // ws.send(JSON.stringify(measurements))
                     measurements = {}
