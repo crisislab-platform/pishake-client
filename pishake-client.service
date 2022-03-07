@@ -1,0 +1,14 @@
+[Unit]
+Description=Service to stream data to CRISiSLab servers.
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+Environment="CRISISLAB_SENSOR_TOKEN=<token>"
+ExecStart=node /opt/pishake-client/index_udp.js
+
+[Install]
+WantedBy=multi-user.target
