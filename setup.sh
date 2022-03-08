@@ -23,6 +23,7 @@ if [ -z "$CRISISLAB_SENSOR_TOKEN" ]; then
 fi
 
 echo Installing dependencies
+sudo apt-get remove gpsd gpsd-clients python-gps -y
 apt update -y
 apt-get install curl -y
 
