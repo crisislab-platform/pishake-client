@@ -23,24 +23,22 @@ if [ -z "$CRISISLAB_SENSOR_TOKEN" ]; then
 fi
 
 echo Installing dependencies
-apt update -y > /dev/null
-apt-get install curl -y > /dev/null
+apt update -y
+apt-get install curl -y
 
 echo Adding Node.js source
-curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - > /dev/null
+curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -
 
 echo Installing Node.js
-apt-get install -y nodejs > /dev/null
-# (crontab -l 2>/dev/null; echo "@reboot CRISISLAB_SENSOR_TOKEN=") | crontab - > /dev/null
-# (crontab -l 2>/dev/null; echo "@reboot node /opt/pishake-client/script.js") | crontab - > /dev/null
+apt-get install -y nodejs
 
 echo Downloading client
 rm -r /opt/pishake-client
-git clone https://github.com/rs-Web-Interface-CRISiSLab/pishake-client.git /opt/pishake-client > /dev/null
+git clone https://github.com/rs-Web-Interface-CRISiSLab/pishake-client.git /opt/pishake-client
 cd /opt/pishake-client
 
 echo Installing dependencies
-npm install > /dev/null
+npm install
 
 
 # Install as service
