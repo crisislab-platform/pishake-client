@@ -33,6 +33,7 @@ echo Installing Node.js
 apt-get install -y nodejs
 
 echo Downloading client
+rm -rf /opt/pishake-client
 git clone https://github.com/rs-Web-Interface-CRISiSLab/pishake-client.git /opt/pishake-client
 cd /opt/pishake-client
 
