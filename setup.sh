@@ -35,6 +35,7 @@ apt-get install -y nodejs > /dev/null
 # (crontab -l 2>/dev/null; echo "@reboot node /opt/pishake-client/script.js") | crontab - > /dev/null
 
 echo Downloading client
+rm -r /opt/pishake-client
 git clone https://github.com/rs-Web-Interface-CRISiSLab/pishake-client.git /opt/pishake-client > /dev/null
 cd /opt/pishake-client
 
