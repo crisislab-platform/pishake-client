@@ -29,7 +29,7 @@ const streamControllers = {};
 
 const madeStreams = {};
 
-const segmentDuration = 10;
+const segmentDuration = 25;
 
 var packetLength = 0;
 
