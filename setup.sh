@@ -23,8 +23,9 @@ if [ -z "$CRISISLAB_SENSOR_TOKEN" ]; then
 fi
 
 echo Installing dependencies
-sudo apt-get remove gpsd gpsd-clients python-gps -y
+apt-get remove gpsd gpsd-clients python-gps -y
 apt update -y
+apt install git
 
 echo Adding Node.js source
 curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -
