@@ -63,7 +63,7 @@ async function updateMetadata() {
 		{ iface: "wlan0", show_hidden: true },
 		function (err, networks) {
 			fetch(
-				"https://internship-worker.benhong.workers.dev/api/v1/sensors/updateMetadata",
+				"https://internship-worker.benhong.workers.dev/api/v0/sensors/updateMetadata",
 				{
 					method: "POST",
 					body: JSON.stringify({
