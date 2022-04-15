@@ -47,7 +47,7 @@ echo Installing service
 sed -i 's/<token>/'$CRISISLAB_SENSOR_TOKEN'/g' /opt/pishake-client/pishake-client.service
 cp /opt/pishake-client/pishake-client.service /etc/systemd/system/pishake-client.service
 systemctl daemon-reload
-systemctl enable pishake-client.service
-systemctl start pishake-client.service
+# systemctl enable pishake-client.service
+# systemctl start pishake-client.service
 
 echo Done\! Your sensor should now be streaming data to the server.
