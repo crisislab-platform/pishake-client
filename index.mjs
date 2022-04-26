@@ -5,7 +5,6 @@ import iwlist from "wireless-tools/iwlist.js";
 import dgram from "dgram";
 
 const token = process.env.CRISISLAB_SENSOR_TOKEN;
-// const host = "ws://192.168.1.153:8787"
 const host = "wss://ingest-worker.benhong.workers.dev"
 
 var streamController;
