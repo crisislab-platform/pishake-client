@@ -21,7 +21,7 @@ server.on("message", (msg) => {
 		.replace("{", "[")
 		.replace("}", "]");
 
-	controller.send(dataString);
+	if (controller.readyState === WebSocket.OPEN) controller.send(dataString);
 });
 
 server.on("listening", () => {
